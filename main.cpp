@@ -1,11 +1,18 @@
-#include "Weather.h"
+#include "XmlService.h"
+#include <iostream>
 
 int main() {
-    // Создаем объект класса Weather, передавая данные из примера в задании
-    Weather kirovWeather("Киров", 49.6601, 58.5966, 5.69, "дождь", 4.27, 100);
+    try {
+        // Код проверки из условия задачи
+        XmlService xs;
+        Weather w = xs.getWeather("weather.xml");
 
-    // Вызываем метод для вывода описания
-    kirovWeather.printDescription();
+        // Выводим результат в консоль для визуальной проверки
+        w.printDescription();
+
+    } catch (const std::exception& e) {
+        std::cerr << "Произошла ошибка при работе с XML: " << e.what() << std::endl;
+    }
 
     return 0;
 }
