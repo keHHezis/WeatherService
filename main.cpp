@@ -1,11 +1,18 @@
-#include "Weather.h"
+#include "JsonService.h"
+#include <iostream>
 
 int main() {
-    // Создаем объект класса Weather, передавая данные из примера в задании
-    Weather kirovWeather("Киров", 49.6601, 58.5966, 5.69, "дождь", 4.27, 100);
+    try {
+        // Код из условия задачи
+        JsonService js;
+        Weather w = js.getWeather("weather.json");
 
-    // Вызываем метод для вывода описания
-    kirovWeather.printDescription();
+        // Вызываем метод вывода, чтобы убедиться в правильности заполнения объекта
+        w.printDescription();
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Произошла ошибка: " << e.what() << std::endl;
+    }
 
     return 0;
 }
